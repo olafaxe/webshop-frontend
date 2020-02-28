@@ -7,16 +7,19 @@ import OrdersPage from "../Pages/OrdersPage/OrdersPage";
 
 const Router = () => {
   const [products, setProducts] = useState();
-
+  const [colorType, setColorType] = useState([]);
+  const [optionColor, setOptionColor] = useState("");
   const [cartProducts, setCartProducts] = useState([]);
   const [orderData, setOrderData] = useState(false);
   const [customer, setCustomer] = useState("");
   const [email, setEmail] = useState("");
   const [totalCost, setTotalCost] = useState(0);
 
-  const addToCartHandler = item => {
+  const addToCartHandler = (item, color) => {
+    let pro = item;
+    pro.color = color;
     setOrderData(true);
-    setCartProducts(state => [item, ...state]);
+    setCartProducts(state => [pro, ...state]);
   };
 
   const checkOutOrder = e => {
@@ -56,11 +59,24 @@ const Router = () => {
     setEmail(e.target.value);
   };
 
+  const colorHandler = e => {
+    setOptionColor(e);
+  };
+
   useEffect(() => {
     (async () => {
       const resp = await fetch("https://localhost:5001/product");
       const products = await resp.json();
       setProducts(products);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const resp = await fetch("https://localhost:5001/colors");
+      const col = await resp.json();
+
+      setColorType([...col]);
     })();
   }, []);
 
@@ -82,6 +98,9 @@ const Router = () => {
             render={() => (
               <ProductPage
                 products={products}
+                colorType={colorType}
+                optionColor={optionColor}
+                colorHandler={colorHandler}
                 addToCartHandler={addToCartHandler}
               />
             )}
@@ -92,6 +111,9 @@ const Router = () => {
             render={() => (
               <ProductPage
                 products={products}
+                colorType={colorType}
+                optionColor={optionColor}
+                colorHandler={colorHandler}
                 addToCartHandler={addToCartHandler}
               />
             )}

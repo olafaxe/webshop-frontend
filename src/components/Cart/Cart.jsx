@@ -35,19 +35,25 @@ export default function SimpleTable({
           <TableHead>
             <TableRow>
               <TableCell>Product Name</TableCell>
+              <TableCell>Product Color</TableCell>
               <TableCell align="right">Cost</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {cartProducts
-              ? cartProducts.map(product => (
-                  <TableRow key={product.id}>
-                    <TableCell component="th" scope="row">
-                      {product.name}
-                    </TableCell>
-                    <TableCell align="right">{product.price}</TableCell>
-                  </TableRow>
-                ))
+              ? cartProducts.map(product => {
+                  return (
+                    <TableRow key={product.id}>
+                      <TableCell component="th" scope="row">
+                        {product.name}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {product.color}
+                      </TableCell>
+                      <TableCell align="right">{product.price}</TableCell>
+                    </TableRow>
+                  );
+                })
               : null}
             <TableRow>
               <TableCell></TableCell>

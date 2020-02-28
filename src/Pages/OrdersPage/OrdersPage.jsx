@@ -89,7 +89,7 @@ const OrdersPage = ({ checkOutOrder, cartProducts }) => {
                     {order.orderItem.map(product => {
                       return (
                         <ListItem key={product.id}>
-                          <ListItemText>{`${product.product.name} | ${product.product.info} | ${product.product.price}kr`}</ListItemText>
+                          <ListItemText>{`${product.product.name} | ${product.product.info} | ${product.color} | ${product.product.price}kr`}</ListItemText>
                         </ListItem>
                       );
                     })}

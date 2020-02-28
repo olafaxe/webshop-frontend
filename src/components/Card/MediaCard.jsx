@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -21,7 +21,13 @@ const useStyles = makeStyles({
   }
 });
 
-export default function MediaCard({ product, addToCartHandler }) {
+export default function MediaCard({
+  product,
+  colorType,
+  optionColor,
+  colorHandler,
+  addToCartHandler
+}) {
   const classes = useStyles();
 
   return (
@@ -44,6 +50,17 @@ export default function MediaCard({ product, addToCartHandler }) {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <select value={optionColor} onChange={e => colorHandler(e.target.value)}>
+        {!colorType
+          ? null
+          : colorType.map(color => {
+              return (
+                <option key={color.colorName} value={color.colorName}>
+                  {color.colorName}
+                </option>
+              );
+            })}
+      </select>
       <Grid container justify="space-evenly" spacing={2}>
         <CardActions>
           <Button size="small" color="primary">
@@ -52,7 +69,7 @@ export default function MediaCard({ product, addToCartHandler }) {
           <Button
             size="small"
             color="primary"
-            onClick={() => addToCartHandler(product)}
+            onClick={() => addToCartHandler(product, optionColor)}
           >
             BUY
           </Button>

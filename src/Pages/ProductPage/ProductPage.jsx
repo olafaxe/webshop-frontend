@@ -20,7 +20,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductPage = ({ products, addToCartHandler }) => {
+const ProductPage = ({
+  products,
+  colorType,
+  optionColor,
+  colorHandler,
+  addToCartHandler
+}) => {
   const classes = useStyles();
 
   return (
@@ -31,6 +37,9 @@ const ProductPage = ({ products, addToCartHandler }) => {
               <Grid key={product.id} item xs={8} className={classes.flex}>
                 <MediaCard
                   product={product}
+                  colorType={colorType}
+                  optionColor={optionColor}
+                  colorHandler={colorHandler}
                   addToCartHandler={addToCartHandler}
                 />
               </Grid>
