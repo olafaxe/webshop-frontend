@@ -8,7 +8,7 @@ import OrdersPage from "../Pages/OrdersPage/OrdersPage";
 const Router = () => {
   const [products, setProducts] = useState();
   const [colorType, setColorType] = useState([]);
-  const [optionColor, setOptionColor] = useState("");
+  const [optionColor, setOptionColor] = useState("Default");
   const [cartProducts, setCartProducts] = useState([]);
   const [orderData, setOrderData] = useState(false);
   const [customer, setCustomer] = useState("");

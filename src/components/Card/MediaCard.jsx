@@ -51,6 +51,7 @@ export default function MediaCard({
         </CardContent>
       </CardActionArea>
       <select value={optionColor} onChange={e => colorHandler(e.target.value)}>
+        <option value={optionColor}>Select</option>
         {!colorType
           ? null
           : colorType.map(color => {

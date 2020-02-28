@@ -32,6 +32,8 @@ const OrdersPage = ({ checkOutOrder, cartProducts }) => {
   const classes = useStyles();
   const [orders, setOrders] = useState();
   const [showOrder, setShowOrder] = useState(null);
+  // const [total, setTotal] = useState([]);
+  let totalCost = 0;
 
   const handleShowOrder = e => {
     setShowOrder(e);
@@ -81,12 +83,14 @@ const OrdersPage = ({ checkOutOrder, cartProducts }) => {
       {showOrder && orders
         ? orders.map((order, index) => {
             if (order.id === showOrder) {
+              console.log(order);
               return (
                 <div key={index}>
                   <h2>Order: {order.id}</h2>
                   <h4>Customer: {order.customer.userName}</h4>
                   <List>
                     {order.orderItem.map(product => {
+                      totalCost = totalCost + product.product.price;
                       return (
                         <ListItem key={product.id}>
                           <ListItemText>{`${product.product.name} | ${product.product.info} | ${product.color} | ${product.product.price}kr`}</ListItemText>
@@ -94,6 +98,7 @@ const OrdersPage = ({ checkOutOrder, cartProducts }) => {
                       );
                     })}
                   </List>
+                  <h3>{`Total: ${totalCost}`}</h3>
                 </div>
               );
             }

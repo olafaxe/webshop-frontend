@@ -185,7 +185,7 @@ const Header = ({ children }) => {
                   history.push("/orders");
                 }}
               >
-                Orders
+                Admin
               </MenuItem>
             </Menu>
           </div>
